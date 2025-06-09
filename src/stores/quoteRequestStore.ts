@@ -185,36 +185,78 @@ const initialFormData: QuoteRequestFormData = {
   projectDescription: ''
 };
 
+const defaultDrafts: QuoteRequestDraft[] = [
+  {
+    id: '1',
+    formData: {
+      ...initialFormData,
+      society: { id: '1', isNew: false, details: {} },
+      establishment: {
+        name: 'Restaurant Le Gourmet',
+        address: '123 Rue de la Paix, 75015 Paris',
+        activity: 'Restauration',
+        surface: '150'
+      },
+      mainService: 'at-pc',
+      subServices: ['plan-realization', 'security-notice']
+    },
+    currentStep: 4,
+    lastSaved: '2024-01-15T10:30:00Z',
+    title: 'Demande AT Restaurant Le Gourmet'
+  }
+];
+
+const loadDrafts = (): QuoteRequestDraft[] => {
+  if (typeof localStorage !== 'undefined') {
+    try {
+      const stored = localStorage.getItem('quoteRequestDrafts');
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+  return defaultDrafts;
+};
+
+const loadStep = (): number => {
+  if (typeof localStorage !== 'undefined') {
+    const stored = localStorage.getItem('quoteRequestCurrentStep');
+    if (stored) {
+      const s = parseInt(stored, 10);
+      if (!Number.isNaN(s)) return s;
+    }
+  }
+  return 1;
+};
+
+const persistDrafts = (drafts: QuoteRequestDraft[]) => {
+  if (typeof localStorage === 'undefined') return;
+  if (drafts.length > 0) {
+    localStorage.setItem('quoteRequestDrafts', JSON.stringify(drafts));
+  } else {
+    localStorage.removeItem('quoteRequestDrafts');
+  }
+};
+
+const persistStep = (step: number) => {
+  if (typeof localStorage === 'undefined') return;
+  localStorage.setItem('quoteRequestCurrentStep', String(step));
+};
+
 export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
-  currentStep: 1,
+  currentStep: loadStep(),
   formData: initialFormData,
   validation: {
     errors: {},
     isValid: false
   },
-  drafts: [
-    {
-      id: '1',
-      formData: {
-        ...initialFormData,
-        society: { id: '1', isNew: false, details: {} },
-        establishment: { 
-          name: 'Restaurant Le Gourmet', 
-          address: '123 Rue de la Paix, 75015 Paris', 
-          activity: 'Restauration', 
-          surface: '150' 
-        },
-        mainService: 'at-pc',
-        subServices: ['plan-realization', 'security-notice']
-      },
-      currentStep: 4,
-      lastSaved: '2024-01-15T10:30:00Z',
-      title: 'Demande AT Restaurant Le Gourmet'
-    }
-  ],
+  drafts: loadDrafts(),
   isLoading: false,
 
   setCurrentStep: (step) => {
+    persistStep(step);
     set({ currentStep: step });
   },
 
@@ -356,7 +398,7 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
   saveDraft: (title) => {
     const { formData, currentStep } = get();
     const draftTitle = title || `Brouillon ${new Date().toLocaleDateString('fr-FR')}`;
-    
+
     const newDraft: QuoteRequestDraft = {
       id: Date.now().toString(),
       formData,
@@ -365,27 +407,32 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
       title: draftTitle
     };
 
-    set((state) => ({
-      drafts: [newDraft, ...state.drafts]
-    }));
+    set((state) => {
+      const drafts = [newDraft, ...state.drafts];
+      persistDrafts(drafts);
+      return { drafts };
+    });
   },
 
   loadDraft: (id) => {
     const { drafts } = get();
     const draft = drafts.find(d => d.id === id);
-    
+
     if (draft) {
       set({
         formData: draft.formData,
         currentStep: draft.currentStep
       });
+      persistStep(draft.currentStep);
     }
   },
 
   deleteDraft: (id) => {
-    set((state) => ({
-      drafts: state.drafts.filter(d => d.id !== id)
-    }));
+    set((state) => {
+      const drafts = state.drafts.filter(d => d.id !== id);
+      persistDrafts(drafts);
+      return { drafts };
+    });
   },
 
   submitRequest: async () => {
@@ -401,12 +448,14 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
         currentStep: 1,
         validation: { errors: {}, isValid: false }
       });
+      persistStep(1);
     } finally {
       set({ isLoading: false });
     }
   },
 
   reset: () => {
+    persistStep(1);
     set({
       formData: initialFormData,
       currentStep: 1,
