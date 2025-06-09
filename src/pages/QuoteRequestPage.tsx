@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Save, Send, AlertTriangle } from 'lucide-react';
 import { useQuoteRequestStore } from '../stores/quoteRequestStore';
 import { useMockDataStore } from '../stores/mockDataStore';
 import { useToastStore } from '../components/ui/Toast';
+import { useLanguageStore } from '../stores/languageStore';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import ProgressBar from '../components/ui/ProgressBar';
@@ -19,6 +20,7 @@ const QuoteRequestPage: React.FC = () => {
   const navigate = useNavigate();
   const { addToast } = useToastStore();
   const { addNotification, addActivity } = useMockDataStore();
+  const { t } = useLanguageStore();
   
   const {
     currentStep,
@@ -173,11 +175,13 @@ const QuoteRequestPage: React.FC = () => {
   };
 
   const stepTitles = [
-    'Société & Établissement',
-    'Prestation principale',
-    formData.mainService === 'phone-consultation' ? 'Réservation consultation' : 'Sous-prestations',
-    'Critères spécifiques',
-    'Récapitulatif'
+    t('quoteRequest.step.company'),
+    t('quoteRequest.step.mainService'),
+    formData.mainService === 'phone-consultation'
+      ? t('quoteRequest.step.calendar')
+      : t('quoteRequest.step.subServices'),
+    t('quoteRequest.step.criteria'),
+    t('quoteRequest.step.summary')
   ];
 
   return (
@@ -191,14 +195,14 @@ const QuoteRequestPage: React.FC = () => {
             onClick={() => navigate('/dashboard')}
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Retour au tableau de bord
+            {t('quoteRequest.backToDashboard')}
           </Button>
         </div>
         
         <div className="flex items-center space-x-3">
           <Button variant="secondary" onClick={handleSaveDraft}>
             <Save className="h-4 w-4 mr-2" />
-            Sauvegarder
+            {t('quoteRequest.save')}
           </Button>
           
           {drafts.length > 0 && (
@@ -210,7 +214,7 @@ const QuoteRequestPage: React.FC = () => {
               }}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
             >
-              <option value="">Charger un brouillon</option>
+              <option value="">{t('quoteRequest.loadDraft')}</option>
               {drafts.map(draft => (
                 <option key={draft.id} value={draft.id}>
                   {draft.title}
@@ -225,17 +229,25 @@ const QuoteRequestPage: React.FC = () => {
       <Card className="p-6">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Générateur de devis Prévéris
+            {t('quoteRequest.title')}
           </h1>
           <p className="text-gray-600">
             Étape {currentStep} sur 5 : {stepTitles[currentStep - 1]}
           </p>
         </div>
         
-        <ProgressBar 
-          currentStep={currentStep} 
+        <ProgressBar
+          currentStep={currentStep}
           totalSteps={5}
-          stepLabels={['Société', 'Prestation', formData.mainService === 'phone-consultation' ? 'Calendrier' : 'Sous-prestations', 'Critères', 'Récapitulatif']}
+          stepLabels={[
+            t('quoteRequest.step.companyShort'),
+            t('quoteRequest.step.mainServiceShort'),
+            formData.mainService === 'phone-consultation'
+              ? t('quoteRequest.step.calendarShort')
+              : t('quoteRequest.step.subServicesShort'),
+            t('quoteRequest.step.criteriaShort'),
+            t('quoteRequest.step.summaryShort'),
+          ]}
         />
       </Card>
 
@@ -257,7 +269,7 @@ const QuoteRequestPage: React.FC = () => {
             {currentStep > 1 && (
               <Button variant="secondary" onClick={handlePrevious}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Précédent
+                {t('quoteRequest.previous')}
               </Button>
             )}
           </div>
@@ -274,11 +286,11 @@ const QuoteRequestPage: React.FC = () => {
             )}
             
             {currentStep < 5 ? (
-              <Button 
+              <Button
                 onClick={handleNext}
                 disabled={Object.keys(validation.errors).length > 0}
               >
-                Suivant
+                {t('quoteRequest.next')}
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
             ) : (
@@ -288,11 +300,11 @@ const QuoteRequestPage: React.FC = () => {
                 className="min-w-32"
               >
                 {isLoading ? (
-                  'Envoi...'
+                  t('quoteRequest.sending')
                 ) : (
                   <>
                     <Send className="h-4 w-4 mr-2" />
-                    Envoyer la demande
+                    {t('quoteRequest.send')}
                   </>
                 )}
               </Button>

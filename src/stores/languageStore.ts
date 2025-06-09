@@ -193,6 +193,33 @@ const translations = {
     'header.settings': 'Paramètres',
     'header.logoutButton': 'Se déconnecter',
     'header.logoutConfirm': 'Êtes-vous sûr de vouloir vous déconnecter ?',
+
+    // 404 Page
+    'notFound.title': '404 - Page introuvable',
+    'notFound.description': 'La page que vous cherchez n\'est pas disponible.',
+    'notFound.backHome': 'Retour à l\'accueil',
+
+    // Quote Request Page
+    'quoteRequest.title': 'Générateur de devis Prévéris',
+    'quoteRequest.backToDashboard': 'Retour au tableau de bord',
+    'quoteRequest.save': 'Sauvegarder',
+    'quoteRequest.loadDraft': 'Charger un brouillon',
+    'quoteRequest.step.company': 'Société & Établissement',
+    'quoteRequest.step.mainService': 'Prestation principale',
+    'quoteRequest.step.calendar': 'Réservation consultation',
+    'quoteRequest.step.subServices': 'Sous-prestations',
+    'quoteRequest.step.criteria': 'Critères spécifiques',
+    'quoteRequest.step.summary': 'Récapitulatif',
+    'quoteRequest.step.companyShort': 'Société',
+    'quoteRequest.step.mainServiceShort': 'Prestation',
+    'quoteRequest.step.calendarShort': 'Calendrier',
+    'quoteRequest.step.subServicesShort': 'Sous-prestations',
+    'quoteRequest.step.criteriaShort': 'Critères',
+    'quoteRequest.step.summaryShort': 'Récap.',
+    'quoteRequest.previous': 'Précédent',
+    'quoteRequest.next': 'Suivant',
+    'quoteRequest.send': 'Envoyer la demande',
+    'quoteRequest.sending': 'Envoi...'
   },
   en: {
     // Header
@@ -380,6 +407,33 @@ const translations = {
     'header.settings': 'Settings',
     'header.logoutButton': 'Sign out',
     'header.logoutConfirm': 'Are you sure you want to log out?',
+
+    // 404 Page
+    'notFound.title': '404 - Page not found',
+    'notFound.description': "The page you are looking for isn't available.",
+    'notFound.backHome': 'Go back home',
+
+    // Quote Request Page
+    'quoteRequest.title': 'Prévéris quote generator',
+    'quoteRequest.backToDashboard': 'Back to dashboard',
+    'quoteRequest.save': 'Save',
+    'quoteRequest.loadDraft': 'Load draft',
+    'quoteRequest.step.company': 'Company & establishment',
+    'quoteRequest.step.mainService': 'Main service',
+    'quoteRequest.step.calendar': 'Consultation booking',
+    'quoteRequest.step.subServices': 'Sub-services',
+    'quoteRequest.step.criteria': 'Specific criteria',
+    'quoteRequest.step.summary': 'Summary',
+    'quoteRequest.step.companyShort': 'Company',
+    'quoteRequest.step.mainServiceShort': 'Service',
+    'quoteRequest.step.calendarShort': 'Calendar',
+    'quoteRequest.step.subServicesShort': 'Sub-services',
+    'quoteRequest.step.criteriaShort': 'Criteria',
+    'quoteRequest.step.summaryShort': 'Summary',
+    'quoteRequest.previous': 'Previous',
+    'quoteRequest.next': 'Next',
+    'quoteRequest.send': 'Submit request',
+    'quoteRequest.sending': 'Sending...'
   }
 };
 
