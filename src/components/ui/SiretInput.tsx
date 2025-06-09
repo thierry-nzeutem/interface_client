@@ -106,7 +106,7 @@ const SiretInput: React.FC<SiretInputProps> = ({ value, onChange, onValidation }
     }
   };
 
-  const formatSiret = (input: string) => {
+  export const formatSiret = (input: string) => {
     // Remove all non-digits
     const digits = input.replace(/\D/g, '');
     // Limit to 14 digits
