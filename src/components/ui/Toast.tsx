@@ -107,7 +107,8 @@ const ToastContainer: React.FC = () => {
               
               <button
                 onClick={() => removeToast(toast.id)}
-                className="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-600"
+                className="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                aria-label="Fermer la notification"
               >
                 <X className="h-4 w-4" />
               </button>

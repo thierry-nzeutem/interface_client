@@ -93,7 +93,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ isOpen, onClose }
                 <Badge variant="error" size="sm">{unreadCount}</Badge>
               )}
             </div>
-            <Button variant="ghost" size="sm" onClick={onClose}>
+            <Button variant="ghost" size="sm" onClick={onClose} aria-label="Fermer">
               <X className="h-5 w-5" />
             </Button>
           </div>
@@ -186,7 +186,8 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ isOpen, onClose }
                                 e.stopPropagation();
                                 handleMarkAsRead(notification.id);
                               }}
-                              className="text-gray-400 hover:text-gray-600"
+                              className="text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                              aria-label="Marquer comme lue"
                             >
                               <MoreHorizontal className="h-4 w-4" />
                             </button>

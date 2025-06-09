@@ -196,34 +196,37 @@ const ProjectsPage: React.FC = () => {
             {searchTerm && (
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                 Recherche: "{searchTerm}"
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="ml-2 text-blue-600 hover:text-blue-800"
-                >
-                  ×
-                </button>
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="ml-2 text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                    aria-label="Retirer la recherche"
+                  >
+                    ×
+                  </button>
               </span>
             )}
             {filters.type && (
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                 Type: {projectTypes.find(t => t.value === filters.type)?.label}
-                <button
-                  onClick={() => setFilters({ type: '' })}
-                  className="ml-2 text-green-600 hover:text-green-800"
-                >
-                  ×
-                </button>
+                  <button
+                    onClick={() => setFilters({ type: '' })}
+                    className="ml-2 text-green-600 hover:text-green-800 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                    aria-label="Retirer le type"
+                  >
+                    ×
+                  </button>
               </span>
             )}
             {filters.status && (
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
                 Statut: {statusOptions.find(s => s.value === filters.status)?.label}
-                <button
-                  onClick={() => setFilters({ status: '' })}
-                  className="ml-2 text-orange-600 hover:text-orange-800"
-                >
-                  ×
-                </button>
+                  <button
+                    onClick={() => setFilters({ status: '' })}
+                    className="ml-2 text-orange-600 hover:text-orange-800 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                    aria-label="Retirer le statut"
+                  >
+                    ×
+                  </button>
               </span>
             )}
           </div>

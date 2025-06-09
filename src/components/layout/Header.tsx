@@ -47,6 +47,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
             size="sm"
             onClick={onSidebarToggle}
             className="lg:hidden"
+            aria-label="Ouvrir le menu"
           >
             <Menu className="h-5 w-5" />
           </Button>
@@ -66,17 +67,23 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           
-          <Button variant="ghost" size="sm" onClick={onHelpToggle}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onHelpToggle}
+            aria-label="Aide"
+          >
             <HelpCircle className="h-5 w-5" />
           </Button>
           
           <div className="relative">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={() => setShowNotifications(!showNotifications)}
-              className="relative"
-            >
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowNotifications(!showNotifications)}
+                className="relative"
+                aria-label="Notifications"
+              >
               <Bell className="h-5 w-5" />
               {unreadCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
