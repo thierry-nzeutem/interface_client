@@ -4,6 +4,7 @@ import { Shield, Mail, Smartphone, MessageSquare, ArrowRight } from 'lucide-reac
 import { useAuthStore } from '../stores/authStore';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
+import { useLanguageStore } from '../stores/languageStore';
 
 const AuthPage: React.FC = () => {
   const [step, setStep] = useState<'email' | 'method' | 'code'>('email');
@@ -13,6 +14,7 @@ const AuthPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { login, requestCode } = useAuthStore();
+  const { t } = useLanguageStore();
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,30 +83,30 @@ const AuthPage: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
             >
               <h2 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-                Connexion sécurisée
+                {t('auth.secureTitle')}
               </h2>
               <form onSubmit={handleEmailSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Adresse email
+                    {t('auth.emailLabel')}
                   </label>
                   <input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="votre@email.fr"
+                    placeholder={t('auth.emailPlaceholder')}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                     required
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Continuer
+                  {t('auth.continue')}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </form>
               <p className="text-xs text-gray-500 mt-4 text-center">
-                Vous recevrez un code de connexion temporaire
+                {t('auth.codeHelp')}
               </p>
             </motion.div>
           )}
@@ -115,7 +117,7 @@ const AuthPage: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
             >
               <h2 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-                Comment souhaitez-vous recevoir votre code ?
+                {t('auth.methodTitle')}
               </h2>
               <div className="space-y-3">
                 {(['email', 'sms', 'whatsapp'] as const).map((m) => {
@@ -144,7 +146,7 @@ const AuthPage: React.FC = () => {
                 onClick={() => setStep('email')}
                 className="w-full mt-4"
               >
-                Retour
+                {t('auth.back')}
               </Button>
             </motion.div>
           )}
@@ -155,12 +157,12 @@ const AuthPage: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
             >
               <h2 className="text-xl font-semibold text-gray-900 mb-6 text-center">
-                Saisissez votre code
+                {t('auth.enterCode')}
               </h2>
               <div className="text-center mb-6">
                 <div className="flex items-center justify-center space-x-2 text-gray-600">
                   {React.createElement(getMethodConfig(method).icon, { className: 'h-5 w-5' })}
-                  <span className="text-sm">Code envoyé via {getMethodConfig(method).label}</span>
+                  <span className="text-sm">{t('auth.codeSentVia')} {getMethodConfig(method).label}</span>
                 </div>
               </div>
               <form onSubmit={handleCodeSubmit} className="space-y-4">
@@ -169,7 +171,7 @@ const AuthPage: React.FC = () => {
                     type="text"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    placeholder="123456"
+                    placeholder={t('auth.codePlaceholder')}
                     className="w-full px-4 py-3 text-center text-lg font-mono border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
                     maxLength={6}
                     pattern="[0-9]{6}"
@@ -177,7 +179,7 @@ const AuthPage: React.FC = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? 'Connexion...' : 'Se connecter'}
+                  {isLoading ? t('auth.loading') : t('auth.login')}
                 </Button>
               </form>
               <div className="text-center mt-4">
@@ -186,7 +188,7 @@ const AuthPage: React.FC = () => {
                   disabled={isLoading}
                   className="text-sm text-red-600 hover:text-red-700 disabled:opacity-50"
                 >
-                  Renvoyer le code
+                  {t('auth.resendCode')}
                 </button>
               </div>
             </motion.div>
@@ -194,7 +196,7 @@ const AuthPage: React.FC = () => {
         </Card>
 
         <div className="text-center mt-6 text-xs text-gray-500">
-          <p>Connexion sécurisée sans mot de passe</p>
+          <p>{t('auth.secureSubtitle')}</p>
         </div>
       </motion.div>
     </div>

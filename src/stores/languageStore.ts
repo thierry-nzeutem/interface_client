@@ -171,6 +171,28 @@ const translations = {
     'companies.siretValid': 'SIRET valide',
     'companies.siretInvalid': 'SIRET invalide',
     'companies.siretChecking': 'Vérification en cours...',
+
+    // Auth Page
+    'auth.secureTitle': 'Connexion sécurisée',
+    'auth.emailLabel': 'Adresse email',
+    'auth.emailPlaceholder': 'votre@email.fr',
+    'auth.continue': 'Continuer',
+    'auth.codeHelp': 'Vous recevrez un code de connexion temporaire',
+    'auth.methodTitle': 'Comment souhaitez-vous recevoir votre code ?',
+    'auth.back': 'Retour',
+    'auth.enterCode': 'Saisissez votre code',
+    'auth.codeSentVia': 'Code envoyé via',
+    'auth.codePlaceholder': '123456',
+    'auth.login': 'Se connecter',
+    'auth.loading': 'Connexion...',
+    'auth.resendCode': 'Renvoyer le code',
+    'auth.secureSubtitle': 'Connexion sécurisée sans mot de passe',
+
+    // Header
+    'header.profile': 'Mon profil',
+    'header.settings': 'Paramètres',
+    'header.logoutButton': 'Se déconnecter',
+    'header.logoutConfirm': 'Êtes-vous sûr de vouloir vous déconnecter ?',
   },
   en: {
     // Header
@@ -336,6 +358,28 @@ const translations = {
     'companies.siretValid': 'Valid SIRET',
     'companies.siretInvalid': 'Invalid SIRET',
     'companies.siretChecking': 'Checking...',
+
+    // Auth Page
+    'auth.secureTitle': 'Secure Login',
+    'auth.emailLabel': 'Email address',
+    'auth.emailPlaceholder': 'your@email.com',
+    'auth.continue': 'Continue',
+    'auth.codeHelp': 'You will receive a temporary login code',
+    'auth.methodTitle': 'How would you like to receive your code?',
+    'auth.back': 'Back',
+    'auth.enterCode': 'Enter your code',
+    'auth.codeSentVia': 'Code sent via',
+    'auth.codePlaceholder': '123456',
+    'auth.login': 'Log in',
+    'auth.loading': 'Connecting...',
+    'auth.resendCode': 'Resend code',
+    'auth.secureSubtitle': 'Passwordless secure login',
+
+    // Header
+    'header.profile': 'My profile',
+    'header.settings': 'Settings',
+    'header.logoutButton': 'Sign out',
+    'header.logoutConfirm': 'Are you sure you want to log out?',
   }
 };
 
