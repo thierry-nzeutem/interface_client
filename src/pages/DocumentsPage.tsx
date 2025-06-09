@@ -125,7 +125,7 @@ const DocumentsPage: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'Signé':
-        return <Badge variant="success\" size="sm">Signé</Badge>;
+        return <Badge variant="success" size="sm">Signé</Badge>;
       case 'Validé':
         return <Badge variant="success" size="sm">Validé</Badge>;
       case 'En attente':
