@@ -255,7 +255,7 @@ const QuoteRequestPage: React.FC = () => {
         <div className="flex items-center justify-between">
           <div>
             {currentStep > 1 && (
-              <Button variant="secondary\" onClick={handlePrevious}>
+              <Button variant="secondary" onClick={handlePrevious}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Précédent
               </Button>
