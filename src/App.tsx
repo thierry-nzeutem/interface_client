@@ -12,6 +12,7 @@ import DocumentsPage from './pages/DocumentsPage';
 import CompliancePage from './pages/CompliancePage';
 import MairieDashboardPage from './pages/MairieDashboardPage';
 import SettingsPage from './pages/SettingsPage';
+import NotFoundPage from './pages/NotFoundPage';
 import Layout from './components/layout/Layout';
 import ToastContainer from './components/ui/Toast';
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/compliance" element={<CompliancePage />} />
           <Route path="/mairie-dashboard" element={<MairieDashboardPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
       <ToastContainer />
