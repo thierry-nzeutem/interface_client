@@ -23,3 +23,12 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Exécuter les tests unitaires
+
+Les tests sont écrits avec [Vitest](https://vitest.dev/). Utilisez la commande suivante pour lancer la suite :
+
+```bash
+npm test
+```
+
