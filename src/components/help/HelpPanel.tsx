@@ -56,7 +56,7 @@ const HelpPanel: React.FC<HelpPanelProps> = ({ onClose }) => {
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold text-gray-900">Centre d'aide</h2>
-          <Button variant="ghost" size="sm" onClick={onClose}>
+          <Button variant="ghost" size="sm" onClick={onClose} aria-label="Fermer l'aide">
             <X className="h-5 w-5" />
           </Button>
         </div>

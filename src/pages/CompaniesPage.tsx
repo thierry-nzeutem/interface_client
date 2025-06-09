@@ -125,7 +125,7 @@ const CompaniesPage: React.FC = () => {
           <Card className="p-6 max-w-md w-full mx-4">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Import en masse</h2>
-              <Button variant="ghost" size="sm" onClick={() => setShowImportModal(false)}>
+              <Button variant="ghost" size="sm" onClick={() => setShowImportModal(false)} aria-label="Fermer l'import">
                 ×
               </Button>
             </div>
@@ -165,9 +165,9 @@ const CompaniesPage: React.FC = () => {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Créer une nouvelle société</h2>
-            <Button variant="ghost" size="sm" onClick={() => setShowCreateForm(false)}>
-              ×
-            </Button>
+              <Button variant="ghost" size="sm" onClick={() => setShowCreateForm(false)} aria-label="Fermer le formulaire">
+                ×
+              </Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -249,7 +249,7 @@ const CompaniesPage: React.FC = () => {
           <Card className="p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Informations société</h2>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" aria-label="Modifier la société">
                 <Edit className="h-4 w-4" />
               </Button>
             </div>
@@ -376,10 +376,10 @@ const CompaniesPage: React.FC = () => {
                     </div>
                     
                     <div className="flex items-center space-x-2 ml-4">
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" aria-label="Modifier l'établissement">
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
+                      <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700" aria-label="Supprimer l'établissement">
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>

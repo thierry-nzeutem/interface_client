@@ -280,19 +280,37 @@ const DocumentsPage: React.FC = () => {
             {searchTerm && (
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                 Recherche: "{searchTerm}"
-                <button onClick={() => setSearchTerm('')} className="ml-2">×</button>
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="ml-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                    aria-label="Retirer la recherche"
+                  >
+                    ×
+                  </button>
               </span>
             )}
             {selectedCategory && (
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                 Catégorie: {selectedCategory}
-                <button onClick={() => setSelectedCategory('')} className="ml-2">×</button>
+                  <button
+                    onClick={() => setSelectedCategory('')}
+                    className="ml-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                    aria-label="Retirer la catégorie"
+                  >
+                    ×
+                  </button>
               </span>
             )}
             {selectedTags.map(tag => (
               <span key={tag} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                 Tag: {tag}
-                <button onClick={() => toggleTag(tag)} className="ml-2">×</button>
+                  <button
+                    onClick={() => toggleTag(tag)}
+                    className="ml-2 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                    aria-label="Retirer le tag"
+                  >
+                    ×
+                  </button>
               </span>
             ))}
           </div>
@@ -369,19 +387,19 @@ const DocumentsPage: React.FC = () => {
                     {getStatusBadge(document.status)}
                     
                     <div className="flex items-center space-x-2">
-                      <Button variant="ghost" size="sm" onClick={() => handlePreview(document)}>
+                      <Button variant="ghost" size="sm" onClick={() => handlePreview(document)} aria-label="Prévisualiser">
                         <Eye className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" aria-label="Télécharger">
                         <Download className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="sm" onClick={() => handleShare(document)}>
+                      <Button variant="ghost" size="sm" onClick={() => handleShare(document)} aria-label="Partager">
                         <Share className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="sm" onClick={() => handleVersioning(document)}>
+                      <Button variant="ghost" size="sm" onClick={() => handleVersioning(document)} aria-label="Historique des versions">
                         <Clock className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
+                      <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700" aria-label="Supprimer">
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -452,7 +470,7 @@ const DocumentsPage: React.FC = () => {
                   <Download className="h-4 w-4 mr-2" />
                   Télécharger
                 </Button>
-                <Button variant="ghost" size="sm" onClick={() => setPreviewDocument(null)}>
+                <Button variant="ghost" size="sm" onClick={() => setPreviewDocument(null)} aria-label="Fermer la prévisualisation">
                   <X className="h-4 w-4" />
                 </Button>
               </div>
