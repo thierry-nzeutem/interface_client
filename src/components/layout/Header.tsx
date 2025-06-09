@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Menu, Search, Bell, HelpCircle, User, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 import { useLanguageStore } from '../../stores/languageStore';
@@ -14,6 +15,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
+  const navigate = useNavigate();
   const { user, logout } = useAuthStore();
   const { t } = useLanguageStore();
   const { notifications } = useMockDataStore();
@@ -117,7 +119,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
                   onClick={() => {
                     setShowUserMenu(false);
                     // Navigation vers profil
-                    window.location.href = '/settings';
+                    navigate('/settings');
                   }}
                   className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                 >
@@ -127,7 +129,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
                 <button
                   onClick={() => {
                     setShowUserMenu(false);
-                    window.location.href = '/settings';
+                    navigate('/settings');
                   }}
                   className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                 >

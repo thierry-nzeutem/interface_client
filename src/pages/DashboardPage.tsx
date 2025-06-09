@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   FolderOpen, 
@@ -30,6 +31,7 @@ import ProjectCard from '../components/projects/ProjectCard';
 import Tooltip from '../components/ui/Tooltip';
 
 const DashboardPage: React.FC = () => {
+  const navigate = useNavigate();
   const { projects } = useProjectStore();
   const { user } = useAuthStore();
   const { t } = useLanguageStore();
@@ -85,7 +87,7 @@ const DashboardPage: React.FC = () => {
           title: 'Redirection',
           message: 'Redirection vers le générateur de devis...'
         });
-        setTimeout(() => window.location.href = '/quote-request', 1000);
+        navigate('/quote-request');
       }
     },
     {
@@ -122,7 +124,7 @@ const DashboardPage: React.FC = () => {
           title: 'Conformité',
           message: 'Accès au tableau de bord conformité'
         });
-        setTimeout(() => window.location.href = '/compliance', 1000);
+        navigate('/compliance');
       }
     },
     {
@@ -138,7 +140,7 @@ const DashboardPage: React.FC = () => {
           title: 'Documents',
           message: 'Ouverture de la bibliothèque de documents'
         });
-        setTimeout(() => window.location.href = '/documents', 1000);
+        navigate('/documents');
       }
     }
   ];
@@ -182,7 +184,7 @@ const DashboardPage: React.FC = () => {
             <Bell className="h-4 w-4 mr-2" />
             Test notification
           </Button>
-          <Button onClick={() => window.location.href = '/quote-request'}>
+          <Button onClick={() => navigate('/quote-request')}>
             <Plus className="h-4 w-4 mr-2" />
             Demande de devis
           </Button>
@@ -327,8 +329,8 @@ const DashboardPage: React.FC = () => {
                   Prochaine échéance : {new Date(upcomingDeadlines[0].nextDeadline!).toLocaleDateString('fr-FR')}
                 </p>
               </div>
-              <Button 
-                variant="secondary" 
+              <Button
+                variant="secondary"
                 size="sm"
                 onClick={() => {
                   addToast({
@@ -336,7 +338,7 @@ const DashboardPage: React.FC = () => {
                     title: 'Échéances',
                     message: 'Redirection vers la liste des échéances'
                   });
-                  setTimeout(() => window.location.href = '/projects', 1000);
+                  navigate('/projects');
                 }}
               >
                 Voir toutes
@@ -387,8 +389,8 @@ const DashboardPage: React.FC = () => {
           <Card className="p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-gray-900">{t('dashboard.recentProjects')}</h2>
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="sm"
                 onClick={() => {
                   addToast({
@@ -396,7 +398,7 @@ const DashboardPage: React.FC = () => {
                     title: 'Projets',
                     message: 'Redirection vers tous les projets'
                   });
-                  setTimeout(() => window.location.href = '/projects', 1000);
+                  navigate('/projects');
                 }}
               >
                 {t('dashboard.viewAll')}
