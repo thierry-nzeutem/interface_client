@@ -28,7 +28,7 @@ const translations = {
     'dashboard.welcome': 'Bonjour',
     'dashboard.overview': 'Voici un aperçu de vos projets et échéances',
     'dashboard.activeCompany': 'Société active:',
-    'dashboard.totalProjects': 'Projets total',
+    'dashboard.totalProjects': 'Total de projets',
     'dashboard.inProgress': 'En cours',
     'dashboard.completed': 'Terminés',
     'dashboard.urgent': 'Urgents',
