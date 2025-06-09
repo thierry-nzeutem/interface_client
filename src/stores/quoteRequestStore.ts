@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { debugLog } from '../utils/debug';
 
 export interface Society {
   id: string;
@@ -228,7 +229,7 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
     const { formData } = get();
     const errors: Record<string, string> = {};
 
-    console.log('🔍 Validation étape', step, 'avec formData:', formData);
+    debugLog('🔍 Validation étape', step, 'avec formData:', formData);
 
     switch (step) {
       case 1:
@@ -264,7 +265,7 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
         const selectedMainService = mainServices.find(s => s.id === formData.mainService);
         
         if (selectedMainService?.requiresCalendar) {
-          console.log('📋 Validation consultation:', formData.consultation);
+          debugLog('📋 Validation consultation:', formData.consultation);
           
           // Validation calendrier
           if (!formData.consultation.type) {
@@ -276,17 +277,17 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
           
           // CORRECTION CRITIQUE: Vérification simplifiée de la date
           if (!formData.consultation.selectedDate) {
-            console.log('❌ Date manquante:', formData.consultation.selectedDate);
+            debugLog('❌ Date manquante:', formData.consultation.selectedDate);
             errors.consultationDate = 'Date requise';
           } else {
-            console.log('✅ Date présente:', formData.consultation.selectedDate, typeof formData.consultation.selectedDate);
+            debugLog('✅ Date présente:', formData.consultation.selectedDate, typeof formData.consultation.selectedDate);
           }
           
           if (!formData.consultation.selectedTimeSlot || formData.consultation.selectedTimeSlot.trim() === '') {
-            console.log('❌ Créneau manquant:', formData.consultation.selectedTimeSlot);
+            debugLog('❌ Créneau manquant:', formData.consultation.selectedTimeSlot);
             errors.consultationTime = 'Créneau horaire requis';
           } else {
-            console.log('✅ Créneau présent:', formData.consultation.selectedTimeSlot);
+            debugLog('✅ Créneau présent:', formData.consultation.selectedTimeSlot);
           }
         } else {
           // Validation sous-prestations
@@ -345,9 +346,9 @@ export const useQuoteRequestStore = create<QuoteRequestState>((set, get) => ({
     
     // Debug: afficher les erreurs dans la console
     if (!isValid) {
-      console.log('❌ Erreurs de validation étape', step, ':', errors);
+      debugLog('❌ Erreurs de validation étape', step, ':', errors);
     } else {
-      console.log('✅ Étape', step, 'validée avec succès');
+      debugLog('✅ Étape', step, 'validée avec succès');
     }
     
     return isValid;

@@ -8,6 +8,7 @@ import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import SiretInput from '../components/ui/SiretInput';
 import Tooltip from '../components/ui/Tooltip';
+import { debugLog } from '../utils/debug';
 
 const CompaniesPage: React.FC = () => {
   const { user } = useAuthStore();
@@ -64,7 +65,7 @@ const CompaniesPage: React.FC = () => {
 
   const handleSiretValidation = (isValid: boolean, data?: any) => {
     if (isValid && data) {
-      console.log('SIRET validated with data:', data);
+      debugLog('SIRET validated with data:', data);
     }
   };
 

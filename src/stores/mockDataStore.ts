@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { debugLog } from '../utils/debug';
 
 // Types pour les données fictives
 interface MockNotification {
@@ -276,7 +277,7 @@ export const useMockDataStore = create<MockDataState>((set, get) => ({
     const document = get().documents.find(doc => doc.id === id);
     if (document) {
       // Simuler le téléchargement
-      console.log(`Téléchargement de ${document.name}...`);
+      debugLog(`Téléchargement de ${document.name}...`);
       
       // Ajouter une activité
       get().addActivity({

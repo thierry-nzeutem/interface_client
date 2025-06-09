@@ -23,6 +23,7 @@ import { useLanguageStore } from '../stores/languageStore';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
+import { debugLog } from '../utils/debug';
 
 const SettingsPage: React.FC = () => {
   const { user } = useAuthStore();
@@ -83,18 +84,18 @@ const SettingsPage: React.FC = () => {
 
   const handleSave = () => {
     // Simulate save
-    console.log('Saving settings...', { formData, notifications, preferences });
+    debugLog('Saving settings...', { formData, notifications, preferences });
   };
 
   const handleExportData = () => {
     // Simulate data export
-    console.log('Exporting user data...');
+    debugLog('Exporting user data...');
   };
 
   const handleDeleteAccount = () => {
     // Simulate account deletion
     if (window.confirm(t('settings.security.deleteWarning'))) {
-      console.log('Deleting account...');
+      debugLog('Deleting account...');
     }
   };
 
