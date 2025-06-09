@@ -2,6 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Check, X, Loader2, Building } from 'lucide-react';
 import { useLanguageStore } from '../../stores/languageStore';
 
+export const formatSiret = (input: string) => {
+  // Remove all non-digits
+  const digits = input.replace(/\D/g, '');
+  // Limit to 14 digits
+  const limited = digits.slice(0, 14);
+  // Format with spaces: XXX XXX XXX XXXXX
+  return limited.replace(/(\d{3})(\d{3})(\d{3})(\d{0,5})/, (match, p1, p2, p3, p4) => {
+    let formatted = p1;
+    if (p2) formatted += ' ' + p2;
+    if (p3) formatted += ' ' + p3;
+    if (p4) formatted += ' ' + p4;
+    return formatted;
+  });
+};
+
 interface SiretInputProps {
   value: string;
   onChange: (value: string) => void;
@@ -104,21 +119,6 @@ const SiretInput: React.FC<SiretInputProps> = ({ value, onChange, onValidation }
       default:
         return <span className="text-gray-500">14 chiffres : 9 chiffres SIREN + 5 chiffres établissement</span>;
     }
-  };
-
-  export const formatSiret = (input: string) => {
-    // Remove all non-digits
-    const digits = input.replace(/\D/g, '');
-    // Limit to 14 digits
-    const limited = digits.slice(0, 14);
-    // Format with spaces: XXX XXX XXX XXXXX
-    return limited.replace(/(\d{3})(\d{3})(\d{3})(\d{0,5})/, (match, p1, p2, p3, p4) => {
-      let formatted = p1;
-      if (p2) formatted += ' ' + p2;
-      if (p3) formatted += ' ' + p3;
-      if (p4) formatted += ' ' + p4;
-      return formatted;
-    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

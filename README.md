@@ -26,9 +26,16 @@ npm run build
 
 ## Exécuter les tests unitaires
 
-Les tests sont écrits avec [Vitest](https://vitest.dev/). Utilisez la commande suivante pour lancer la suite :
+Les tests sont écrits avec [Vitest](https://vitest.dev/) et s'exécutent dans un environnement **jsdom** pour tester les composants React.
+Utilisez la commande suivante pour démarrer la suite en mode surveillance :
 
 ```bash
 npm test
+```
+
+Pour lancer les tests une seule fois (utile dans une intégration continue) :
+
+```bash
+npm test -- --run
 ```
 
