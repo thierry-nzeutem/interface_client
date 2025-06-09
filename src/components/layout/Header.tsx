@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
   };
 
   const handleLogout = () => {
-    if (window.confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+    if (window.confirm(t('header.logoutConfirm'))) {
       logout();
     }
   };
@@ -114,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
                   }}
                   className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                 >
-                  Mon profil
+                  {t('header.profile')}
                 </button>
                 
                 <button
@@ -124,7 +124,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
                   }}
                   className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                 >
-                  Paramètres
+                  {t('header.settings')}
                 </button>
                 
                 <div className="border-t border-gray-100 mt-2 pt-2">
@@ -132,7 +132,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
                     onClick={handleLogout}
                     className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                   >
-                    Se déconnecter
+                    {t('header.logoutButton')}
                   </button>
                 </div>
               </div>
