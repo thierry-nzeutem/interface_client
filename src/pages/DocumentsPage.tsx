@@ -20,6 +20,7 @@ import {
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
+import { debugLog } from '../utils/debug';
 
 const DocumentsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -156,12 +157,12 @@ const DocumentsPage: React.FC = () => {
   };
 
   const handleShare = (document: any) => {
-    console.log('Sharing document:', document.name);
+    debugLog('Sharing document:', document.name);
     // Simulate sharing functionality
   };
 
   const handleVersioning = (document: any) => {
-    console.log('Managing versions for:', document.name);
+    debugLog('Managing versions for:', document.name);
     // Simulate versioning functionality
   };
 

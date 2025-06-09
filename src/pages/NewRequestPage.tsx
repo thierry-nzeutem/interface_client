@@ -23,6 +23,7 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import Tooltip from '../components/ui/Tooltip';
+import { debugLog } from '../utils/debug';
 
 const NewRequestPage: React.FC = () => {
   const [selectedService, setSelectedService] = useState<string>('');
@@ -244,7 +245,7 @@ const NewRequestPage: React.FC = () => {
       });
       
       // Ici vous pourriez ouvrir un modal de comparaison
-      console.log('Services à comparer:', selectedForComparison);
+      debugLog('Services à comparer:', selectedForComparison);
     }
   };
 

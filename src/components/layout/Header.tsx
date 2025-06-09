@@ -7,6 +7,7 @@ import Button from '../ui/Button';
 import Badge from '../ui/Badge';
 import LanguageSelector from '../ui/LanguageSelector';
 import NotificationPanel from '../ui/NotificationPanel';
+import { debugLog } from '../../utils/debug';
 
 interface HeaderProps {
   onSidebarToggle: () => void;
@@ -26,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ onSidebarToggle, onHelpToggle }) => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      console.log('Recherche:', searchTerm);
+      debugLog('Recherche:', searchTerm);
       // Ici vous pourriez naviguer vers une page de résultats
       // ou filtrer les données actuelles
     }

@@ -5,6 +5,7 @@ import { useProjectStore } from '../stores/projectStore';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
+import { debugLog } from '../utils/debug';
 import ProjectCard from '../components/projects/ProjectCard';
 
 const ProjectsPage: React.FC = () => {
@@ -68,12 +69,12 @@ const ProjectsPage: React.FC = () => {
   };
 
   const handleBulkAction = (action: string) => {
-    console.log(`Bulk action: ${action} on projects:`, Array.from(selectedProjects));
+    debugLog(`Bulk action: ${action} on projects:`, Array.from(selectedProjects));
     setSelectedProjects(new Set());
   };
 
   const handleExport = () => {
-    console.log('Exporting projects...', filteredProjects);
+    debugLog('Exporting projects...', filteredProjects);
   };
 
   return (

@@ -5,6 +5,7 @@ import { useToastStore } from '../ui/Toast';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import Badge from '../ui/Badge';
+import { debugLog } from '../../utils/debug';
 
 const CalendarBooking: React.FC = () => {
   const { formData, updateFormData, validateStep, validation } = useQuoteRequestStore();
@@ -21,7 +22,7 @@ const CalendarBooking: React.FC = () => {
   }, [formData.consultation.selectedDate]);
 
   const handleConsultationChange = (field: string, value: any) => {
-    console.log(`🔄 Mise à jour ${field}:`, value);
+    debugLog(`🔄 Mise à jour ${field}:`, value);
     
     const newConsultation = {
       ...formData.consultation,
@@ -32,11 +33,11 @@ const CalendarBooking: React.FC = () => {
   };
 
   const handleDateSelect = (date: Date) => {
-    console.log('📅 Date sélectionnée:', date);
+    debugLog('📅 Date sélectionnée:', date);
     
     // Créer une date propre sans heures/minutes/secondes
     const cleanDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    console.log('📅 Date nettoyée:', cleanDate);
+    debugLog('📅 Date nettoyée:', cleanDate);
     
     // Mettre à jour l'état local immédiatement
     setSelectedDate(cleanDate);
@@ -57,7 +58,7 @@ const CalendarBooking: React.FC = () => {
   };
 
   const handleTimeSlotSelect = (timeSlot: string) => {
-    console.log('⏰ Créneau sélectionné:', timeSlot);
+    debugLog('⏰ Créneau sélectionné:', timeSlot);
     handleConsultationChange('selectedTimeSlot', timeSlot);
     
     addToast({
@@ -94,7 +95,7 @@ const CalendarBooking: React.FC = () => {
   // Validation en temps réel avec délai pour permettre la propagation
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('🔄 Validation avec consultation:', formData.consultation);
+      debugLog('🔄 Validation avec consultation:', formData.consultation);
       validateStep(3);
     }, 100); // Petit délai pour permettre la propagation
 
