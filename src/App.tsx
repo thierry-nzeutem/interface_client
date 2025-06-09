@@ -31,7 +31,7 @@ function App() {
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard\" replace />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:id" element={<ProjectDetailPage />} />
